@@ -59,6 +59,32 @@
             z-index: -1;
         }
 
+        /* --- 4K MULTI-COLOR TWINKLING STARS BACKGROUND EFFECT --- */
+        .stars-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            border-radius: 50%;
+            animation: hdTwinkle linear infinite;
+            will-change: transform, opacity;
+        }
+
+        @keyframes hdTwinkle {
+            0% { opacity: 0.1; transform: scale(0.6) rotate(0deg); }
+            40% { opacity: 1; transform: scale(1.3) rotate(180deg); }
+            70% { opacity: 0.4; transform: scale(0.8) rotate(270deg); }
+            100% { opacity: 0.1; transform: scale(0.6) rotate(360deg); }
+        }
+
         .container {
             max-width: 750px;
             margin: 0 auto;
@@ -497,6 +523,8 @@
 </head>
 <body>
 
+    <div class="stars-container" id="starsContainer"></div>
+
     <div class="container">
 
         <section class="hero">
@@ -641,6 +669,57 @@
     </div>
 
     <script>
+        // Generate 4K Ultra HD Dynamic Multi-Color Twinkling Stars
+        function createStars() {
+            const container = document.getElementById('starsContainer');
+            const starCount = 110; // High-density stars count for crisp depth
+            
+            // Premium Cyberpunk Galactic Theme Colors
+            const colors = [
+                '#ffffff', // Pure Diamond White
+                '#00d2ff', // Electric Cyber Blue
+                '#9d4edd', // Neon Purple
+                '#ffdf7a', // Soft Galactic Gold
+                '#ffffff'  // Dominant white ratio
+            ];
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Varied randomized scales for genuine parallax spatial 4K depth
+                const size = Math.random() * 2.8 + 0.6; // 0.6px to 3.4px crisper points
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                
+                // Varied rates for smooth organic asynchronous twinkling
+                const duration = Math.random() * 4 + 1.8; 
+                const delay = Math.random() * 6;
+                
+                // Pick random color from our futuristic cyber array
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${x}%`;
+                star.style.top = `${y}%`;
+                star.style.backgroundColor = randomColor;
+                
+                // Soft glow element to mimic HD atmospheric scattering
+                if (size > 1.8) {
+                    star.style.boxShadow = `0 0 8px ${randomColor}, 0 0 12px rgba(255,255,255,0.4)`;
+                }
+                
+                star.style.animationDuration = `${duration}s`;
+                star.style.animationDelay = `${delay}s`;
+                
+                container.appendChild(star);
+            }
+        }
+        
+        // Setup stars on content ready
+        window.addEventListener('DOMContentLoaded', createStars);
+
         function openProjectModal(projectName, webUrl) {
             document.getElementById('modalTitle').innerText = projectName;
             document.getElementById('modalWebLink').href = webUrl;
@@ -651,7 +730,7 @@
             // Reset state when opening modal
             suggestionBox.classList.remove('show');
 
-            // Show customized inline smooth suggestion box instead of browser alert
+            /* Trigger the visual premium smooth instructions menu */
             homeScreenBtn.onclick = function() {
                 suggestionBox.classList.add('show');
             };
