@@ -13,6 +13,7 @@
             --card-border: rgba(255, 255, 255, 0.05);
             --neon-blue: #00d2ff;
             --neon-purple: #9d4edd;
+            --neon-green: #10b981;
             --neon-glow: 0 0 20px rgba(0, 210, 255, 0.6);
             --text-main: #f3f4f6;
             --text-muted: #9ca3af;
@@ -243,6 +244,26 @@
             display: flex;
             align-items: center;
             gap: 12px;
+        }
+
+        /* NEW BADGE STYLES */
+        .badge-new {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--neon-green);
+            border: 1px solid var(--neon-green);
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            animation: pulseGreen 2s infinite alternate;
+        }
+
+        @keyframes pulseGreen {
+            0% { box-shadow: 0 0 5px rgba(16, 185, 129, 0.3); }
+            100% { box-shadow: 0 0 15px rgba(16, 185, 129, 0.7); }
         }
 
         .project-desc {
@@ -587,6 +608,15 @@
         <section>
             <h2 class="section-title"><i class="fa-solid fa-code"></i> Projects</h2>
             
+            <div class="glass-card project-card" onclick="openProjectModal('🎓 Class 11th JEE Lectures', 'https://lakshyajee2028.github.io/jee/')">
+                <div class="project-header">
+                    <span class="project-name">🎓 Class 11th JEE Lectures</span>
+                    <span class="badge-new">NEW</span>
+                </div>
+                <p class="project-desc">A dedicated educational portal providing Class 11 JEE aspirants free access to premium Physics Wallah (PW) lectures, structured chapter-wise notes, and study resources designed to streamline daily learning and revision for competitive exams.</p>
+                <span class="project-link-text">Launch site <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+
             <div class="glass-card project-card" onclick="openProjectModal('🏫 SVM Class 10th Website', 'https://svmclass10thf.github.io/svmclass10thf/')">
                 <div class="project-header">
                     <span class="project-name">🏫 SVM Class 10th Website (Past Project)</span>
@@ -659,7 +689,7 @@
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-date">2026</div>
-                    <div class="timeline-title">Created "My Mistakes" App + Website & "My Tracker"</div>
+                    <div class="timeline-title">Created "My Mistakes" App, "My Tracker" & JEE Portal</div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
@@ -678,7 +708,7 @@
             <h2 class="section-title"><i class="fa-solid fa-envelope"></i> Contact </h2>
             <div class="contact-links">
                 <a href="mailto:priyanshusiing01@gmail.com" class="contact-btn"><i class="fa-solid fa-envelope"></i> Email</a>
-                <a href="https://wa.me/919219951830" target="_blank" class="contact-btn whatsapp-btn"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>               
+                <a href="https://wa.me/919219951830" target="_blank" class="contact-btn whatsapp-btn"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>              
                 <div class="contact-btn disabled" title="Not Available"><i class="fa-brands fa-instagram"></i> Unavailable</div>
             </div>
         </section>
