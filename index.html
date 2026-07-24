@@ -608,10 +608,18 @@
         <section>
             <h2 class="section-title"><i class="fa-solid fa-code"></i> Projects</h2>
             
+            <div class="glass-card project-card" onclick="openProjectModal('🎴 JEE FlashRecall 3D', 'https://lakshyajee2028.github.io/flashcard/')">
+                <div class="project-header">
+                    <span class="project-name">🎴 JEE FlashRecall 3D</span>
+                    <span class="badge-new">NEW</span>
+                </div>
+                <p class="project-desc">An interactive 3D flashcard revision tool designed specifically for JEE aspirants. It allows students to quickly recall key concepts, memorize formulas subject-wise, track daily revision history with color-coded status badges, and save important cards for revision later.</p>
+                <span class="project-link-text">Launch site <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+
             <div class="glass-card project-card" onclick="openProjectModal('🎓 Class 11th JEE Lectures', 'https://lakshyajee2028.github.io/jee/')">
                 <div class="project-header">
                     <span class="project-name">🎓 Class 11th JEE Lectures</span>
-                    <span class="badge-new">NEW</span>
                 </div>
                 <p class="project-desc">A dedicated educational portal providing Class 11 JEE aspirants free access to premium Physics Wallah (PW) lectures, structured chapter-wise notes, and study resources designed to streamline daily learning and revision for competitive exams.</p>
                 <span class="project-link-text">Launch site <i class="fa-solid fa-arrow-right"></i></span>
@@ -662,7 +670,6 @@
                 <div class="skill-chip"><i class="fa-brands fa-js" style="color: #f7df1e;"></i> JavaScript </div>
                 <div class="skill-chip"><i class="fa-brands fa-css3-alt" style="color: #264de4;"></i> AI Mastery</div>
                 <div class="skill-chip"><i class="fa-brands fa-git-alt" style="color: #f1502f;"></i> Github</div>
-
             </div>
         </section>
 
@@ -689,7 +696,7 @@
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-date">2026</div>
-                    <div class="timeline-title">Created "My Mistakes" App, "My Tracker" & JEE Portal</div>
+                    <div class="timeline-title">Created "My Mistakes" App, "My Tracker", JEE FlashRecall & JEE Portal</div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
@@ -760,7 +767,6 @@
                 '#ffdf7a', // Soft Galactic Gold
                 '#ffffff'
             ];
-            
             for (let i = 0; i < starCount; i++) {
                 const star = document.createElement('div');
                 star.classList.add('star');
@@ -770,7 +776,6 @@
                 const y = Math.random() * 100;
                 const duration = Math.random() * 4 + 1.8; 
                 const delay = Math.random() * 6;
-                
                 const randomColor = colors[Math.floor(Math.random() * colors.length)];
                 
                 star.style.width = `${size}px`;
@@ -798,13 +803,11 @@
             const meteor = document.createElement('div');
             meteor.classList.add('shooting-star');
             
-            // Randomly pick top entry point across the screen width
-            const startX = Math.random() * 100; // 0% to 100% width
-            const startY = Math.random() * -10; // slightly above view screen to hide abrupt spawning
+            const startX = Math.random() * 100;
+            const startY = Math.random() * -10;
             
-            // Randomize cosmic velocity speed and trace tail width length organically
-            const meteorWidth = Math.random() * 80 + 70; // 70px to 150px sleek line tail
-            const animationDuration = Math.random() * 1.2 + 0.8; // Fast custom fall speed (0.8s to 2s)
+            const meteorWidth = Math.random() * 80 + 70;
+            const animationDuration = Math.random() * 1.2 + 0.8;
 
             meteor.style.left = `${startX}%`;
             meteor.style.top = `${startY}px`;
@@ -812,8 +815,6 @@
             meteor.style.animationDuration = `${animationDuration}s`;
             
             container.appendChild(meteor);
-
-            // Clean up to keep rendering flawless and seamless
             setTimeout(() => {
                 meteor.remove();
             }, animationDuration * 1000);
@@ -828,7 +829,6 @@
 
         function handleTyping() {
             const currentFullText = phrases[currentPhraseIndex];
-            
             if (isDeleting) {
                 typerBox.textContent = currentFullText.substring(0, currentCharIndex - 1);
                 currentCharIndex--;
@@ -840,12 +840,12 @@
             let typingSpeed = isDeleting ? 40 : 90;
 
             if (!isDeleting && currentCharIndex === currentFullText.length) {
-                typingSpeed = 1800; // Hold full sentence state
+                typingSpeed = 1800;
                 isDeleting = true;
             } else if (isDeleting && currentCharIndex === 0) {
                 isDeleting = false;
                 currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
-                typingSpeed = 400; // Buffer space pause
+                typingSpeed = 400;
             }
 
             setTimeout(handleTyping, typingSpeed);
@@ -856,7 +856,6 @@
             createStars();
             handleTyping();
             
-            // Launch realistic deep cosmic meteors randomly every 6 to 10 seconds organically
             setInterval(launchShootingStar, Math.random() * 4000 + 6000);
         });
 
@@ -866,11 +865,8 @@
             
             const homeScreenBtn = document.getElementById('modalHomeScreenBtn');
             const suggestionBox = document.getElementById('customSuggestion');
-
-            // Reset state when opening modal
             suggestionBox.classList.remove('show');
 
-            /* Trigger the visual premium smooth instructions menu */
             homeScreenBtn.onclick = function() {
                 suggestionBox.classList.add('show');
             };
