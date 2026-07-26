@@ -608,10 +608,18 @@
         <section>
             <h2 class="section-title"><i class="fa-solid fa-code"></i> Projects</h2>
             
+            <div class="glass-card project-card" onclick="openProjectModal('🔄 Revision Centre', 'https://lakshyajee2028.github.io/revision/')">
+                <div class="project-header">
+                    <span class="project-name">🔄 Revision Centre</span>
+                    <span class="badge-new">NEW</span>
+                </div>
+                <p class="project-desc">A smart study & revision tracking application designed for JEE aspirants to log daily topics, manage spaced-repetition revision cycles, and build daily study streaks efficiently.</p>
+                <span class="project-link-text">Launch site <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+
             <div class="glass-card project-card" onclick="openProjectModal('🎴 JEE FlashRecall 3D', 'https://lakshyajee2028.github.io/flashcard/')">
                 <div class="project-header">
                     <span class="project-name">🎴 JEE FlashRecall 3D</span>
-                    <span class="badge-new">NEW</span>
                 </div>
                 <p class="project-desc">An interactive 3D flashcard revision tool designed specifically for JEE aspirants. It allows students to quickly recall key concepts, memorize formulas subject-wise, track daily revision history with color-coded status badges, and save important cards for revision later.</p>
                 <span class="project-link-text">Launch site <i class="fa-solid fa-arrow-right"></i></span>
@@ -805,7 +813,6 @@
             
             const startX = Math.random() * 100;
             const startY = Math.random() * -10;
-            
             const meteorWidth = Math.random() * 80 + 70;
             const animationDuration = Math.random() * 1.2 + 0.8;
 
@@ -826,7 +833,6 @@
         let currentCharIndex = 0;
         let isDeleting = false;
         const typerBox = document.getElementById('typerBox');
-
         function handleTyping() {
             const currentFullText = phrases[currentPhraseIndex];
             if (isDeleting) {
@@ -866,7 +872,6 @@
             const homeScreenBtn = document.getElementById('modalHomeScreenBtn');
             const suggestionBox = document.getElementById('customSuggestion');
             suggestionBox.classList.remove('show');
-
             homeScreenBtn.onclick = function() {
                 suggestionBox.classList.add('show');
             };
