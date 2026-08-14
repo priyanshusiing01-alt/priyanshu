@@ -443,6 +443,92 @@
         }
 
         /* ================================================================ */
+        /* ===== DOWNLOAD POP-UP (CARD STYLE) ===== */
+        /* ================================================================ */
+        .download-popup-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(6px);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .download-popup-overlay.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .download-popup-card {
+            background: #13171e;
+            border: 1px solid #262c34;
+            border-radius: 28px;
+            padding: 2.5rem 2.2rem 2.2rem;
+            max-width: 420px;
+            width: 100%;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .download-popup-card .popup-icon {
+            font-size: 4rem;
+            color: #34d399;
+            margin-bottom: 0.75rem;
+        }
+
+        .download-popup-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .download-popup-card p {
+            color: #9ca3af;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.8rem;
+        }
+
+        .download-popup-card p strong {
+            color: #e8edf5;
+        }
+
+        .popup-btn-ok {
+            padding: 0.7rem 2.5rem;
+            border: none;
+            border-radius: 60px;
+            background: linear-gradient(135deg, #7c3aed, #6d28d9);
+            color: #fff;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 14px rgba(124, 58, 237, 0.3);
+        }
+
+        .popup-btn-ok:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            box-shadow: 0 8px 24px rgba(124, 58, 237, 0.45);
+        }
+
+        /* ================================================================ */
         /* ===== LIGHT THEME OVERRIDES ===== */
         /* ================================================================ */
         body.light {
@@ -517,6 +603,21 @@
             background: rgba(124, 58, 237, 0.08);
         }
 
+        /* Light theme popup */
+        body.light .download-popup-card {
+            background: #ffffff;
+            border-color: #e2e8f0;
+        }
+        body.light .download-popup-card h3 {
+            color: #0f172a;
+        }
+        body.light .download-popup-card p {
+            color: #475569;
+        }
+        body.light .download-popup-card p strong {
+            color: #1e293b;
+        }
+
         /* selection */
         ::selection {
             background: #7c3aed;
@@ -555,10 +656,10 @@
 
             <!-- BUTTON GROUP -->
             <div class="btn-group">
-                <a href="https://Priyanshusingh.pages.dev" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                <a href="https://priyanshusiing01-alt.github.io/ps/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
                     Visit Now <i class="fas fa-arrow-right"></i>
                 </a>
-                <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-youtube">
+                <a href="https://www.youtube.com/@projectwithpriyanshu" target="_blank" rel="noopener noreferrer" class="btn btn-youtube">
                     <i class="fab fa-youtube"></i> YouTube
                 </a>
                 <a href="https://wa.me/919219951830" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
@@ -583,12 +684,12 @@
                 </div>
 
                 <div class="app-store-btn-group">
-                    <!-- Download App (Solid Purple) - link डालें -->
-                    <a href="#" target="_blank" rel="noopener noreferrer" class="btn-appstore btn-appstore-download">
-                        <i class="fas fa-download"></i> Download App
-                    </a>
+                    <!-- ✅ Download App - अब JavaScript से फोर्स डाउनलोड होगा -->
+                    <button id="downloadAppBtn" class="btn-appstore btn-appstore-download">
+                        <i class="fas fa-download"></i> Download App Store
+                    </button>
 
-                    <!-- Visit App Store (Outline) - आपका लिंक -->
+                    <!-- Visit App Store (Outline) -->
                     <a href="https://priyanshusiing01-alt.github.io/appstore/" target="_blank" rel="noopener noreferrer" class="btn-appstore btn-appstore-visit">
                         <i class="fas fa-external-link-alt"></i> Visit App Store
                     </a>
@@ -612,8 +713,24 @@
     </div>
     <!-- /container -->
 
+    <!-- ================================================================ -->
+    <!-- ===== DOWNLOAD SUCCESS POP-UP (CARD) ===== -->
+    <!-- ================================================================ -->
+    <div class="download-popup-overlay" id="downloadPopup">
+        <div class="download-popup-card">
+            <div class="popup-icon"><i class="fas fa-check-circle"></i></div>
+            <h3>Download Started! 🚀</h3>
+            <p>
+                Your APK file is being downloaded.<br />
+                Open your <strong>Downloads</strong> folder and tap the file to install it.
+            </p>
+            <button class="popup-btn-ok" id="popupOkBtn">Got it</button>
+        </div>
+    </div>
+
     <script>
         (function() {
+            // ----- THEME TOGGLE -----
             const toggle = document.getElementById('themeToggle');
             const body = document.body;
 
@@ -623,12 +740,54 @@
                 body.classList.add('light');
             }
 
-            // Toggle click handler
             toggle.addEventListener('click', function(e) {
                 e.stopPropagation();
                 body.classList.toggle('light');
                 const current = body.classList.contains('light') ? 'light' : 'dark';
                 localStorage.setItem('ps-core-theme', current);
+            });
+
+            // ----- DOWNLOAD BUTTON LOGIC (FORCE DOWNLOAD) -----
+            const downloadBtn = document.getElementById('downloadAppBtn');
+            const popup = document.getElementById('downloadPopup');
+            const popupOkBtn = document.getElementById('popupOkBtn');
+
+            // 🔥 IMPORTANT: अगर आपकी APK फ़ाइल का नाम अलग है, तो इसे बदलें!
+            const APK_FILE_NAME = 'app-release.apk';
+
+            downloadBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                // Method 1: Hidden <a> tag with 'download' attribute (सबसे भरोसेमंद)
+                const link = document.createElement('a');
+                link.href = APK_FILE_NAME;
+                link.download = APK_FILE_NAME; // यह ब्राउज़र को डाउनलोड करने के लिए मजबूर करता है
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                // 🎉 Download शुरू होते ही Success Pop-up दिखाएँ
+                popup.classList.add('active');
+            });
+
+            // ----- POP-UP CLOSE LOGIC -----
+            // "Got it" बटन पर क्लिक
+            popupOkBtn.addEventListener('click', function() {
+                popup.classList.remove('active');
+            });
+
+            // Overlay के बाहर क्लिक करने पर बंद करें
+            popup.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    popup.classList.remove('active');
+                }
+            });
+
+            // ESC Key दबाने पर बंद करें
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && popup.classList.contains('active')) {
+                    popup.classList.remove('active');
+                }
             });
 
         })();
