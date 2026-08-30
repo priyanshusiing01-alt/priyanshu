@@ -47,76 +47,6 @@ footer strong{color:#e9edf3}
   footer{padding:25px 22px;flex-direction:column;gap:12px}
 }
 
-
-/* --- Subtle neon accents: cinematic theme preserved --- */
-.section:not(#home){
-  overflow:hidden;
-}
-.section:not(#home)::before{
-  content:"";
-  position:absolute;
-  width:240px;
-  height:240px;
-  right:-120px;
-  top:12%;
-  border-radius:50%;
-  background:rgba(0,220,255,.045);
-  filter:blur(70px);
-  pointer-events:none;
-}
-.section:not(#home)::after{
-  content:"";
-  position:absolute;
-  width:180px;
-  height:180px;
-  left:-100px;
-  bottom:8%;
-  border-radius:50%;
-  background:rgba(150,70,255,.04);
-  filter:blur(65px);
-  pointer-events:none;
-}
-#projects .project-card{
-  border-color:rgba(0,220,255,.16);
-  box-shadow:0 0 0 rgba(0,220,255,0);
-}
-#projects .project-card:hover{
-  border-color:rgba(0,220,255,.42);
-  box-shadow:0 0 28px rgba(0,220,255,.10),0 18px 60px rgba(0,0,0,.35);
-}
-#projects .project-card.business-project{
-  border-color:rgba(0,255,170,.30);
-  box-shadow:0 0 22px rgba(0,255,170,.055);
-}
-#projects .business-badge{
-  font-size:10px;
-  letter-spacing:.13em;
-  text-transform:uppercase;
-  border:1px solid rgba(0,255,170,.48);
-  color:#7dffc2;
-  padding:6px 9px;
-  border-radius:999px;
-  background:rgba(0,255,170,.045);
-  box-shadow:0 0 14px rgba(0,255,170,.10);
-}
-#journey .timeline{
-  border-left-color:rgba(0,220,255,.28);
-}
-#journey .timeline-dot{
-  border-color:#8eefff;
-  box-shadow:0 0 15px rgba(0,220,255,.28);
-}
-#journey .timeline-item:first-child .timeline-dot{
-  box-shadow:0 0 20px rgba(0,255,170,.32);
-}
-#contact .contact-card{
-  border-color:rgba(0,220,255,.14);
-}
-#contact .contact-card:hover{
-  border-color:rgba(0,220,255,.35);
-  box-shadow:0 0 20px rgba(0,220,255,.08);
-}
-
 /* --- DATA SECTIONS: cinematic visual language preserved --- */
 .section{position:relative}
 .section .lead{max-width:780px}
@@ -158,17 +88,7 @@ footer strong{color:#e9edf3}
 
 /* Mobile: same cinematic artwork/font/theme, but optimized layout and touch targets. */
 @media(max-width:700px){
-  .hero{
-    height:100svh;
-    min-height:100svh;
-  }
-  .hero img{
-    width:100%;
-    height:100svh;
-    min-height:100svh;
-    object-fit:cover;
-    object-position:center center;
-  }
+  .hero img{width:100%;height:auto}
   .hotspot{min-height:7%}
   .nav-home{left:25%;width:8%}
   .nav-about{left:34%;width:10%}
@@ -207,6 +127,13 @@ footer strong{color:#e9edf3}
   .section h2{font-size:39px}
   .card{padding:20px}
 }
+
+/* SDS business project highlight */
+.sds-project{border-color:rgba(0,255,190,.42)!important;box-shadow:0 0 18px rgba(0,255,190,.10),inset 0 0 18px rgba(0,255,190,.025)}
+.sds-project:hover{border-color:rgba(0,255,190,.75)!important;box-shadow:0 0 28px rgba(0,255,190,.22),inset 0 0 24px rgba(0,255,190,.045)}
+.business-badge{font-size:9px;letter-spacing:.14em;border:1px solid rgba(0,255,190,.55);color:#7dffd9;padding:6px 9px;border-radius:999px;background:rgba(0,255,190,.055);box-shadow:0 0 10px rgba(0,255,190,.16)}
+#projects:after,#journey:after{content:"";position:absolute;left:8%;right:8%;bottom:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,255,190,.38),transparent);box-shadow:0 0 12px rgba(0,255,190,.22);pointer-events:none}
+.timeline-item.sds-timeline .timeline-dot{border-color:#7dffd9;box-shadow:0 0 15px rgba(0,255,190,.55)}
 </style>
 </head>
 <body>
@@ -274,14 +201,11 @@ footer strong{color:#e9edf3}
   <p class="lead">Explore the projects and experiments I've built while learning, creating and preparing for JEE.</p>
   <div class="cards project-grid">
 
-    <article class="card project-card business-project" onclick="openProjectModal('🟢 SDS — Sangam Dial Service','https://sangamdialservice.pages.dev/')">
-      <div class="project-top">
-        <span class="project-icon">🛠️</span>
-        <span class="business-badge">1st BUSINESS PROJECT</span>
-      </div>
+    <article class="card project-card sds-project" onclick="openProjectModal('🛠️ SDS · Sangam Dial Service','https://sangamdialservice.pages.dev/')">
+      <div class="project-top"><span class="project-icon">🛠️</span><span class="business-badge">1st BUSINESS PROJECT</span></div>
       <h3>SDS · Sangam Dial Service</h3>
-      <p>My first business project, built for Sangam Dial Service in Samastipur, Bihar. An on-call service platform that brings a wide range of services to customers — from hardware and software support to plumbing, electrical work, repairs, maintenance, construction and other everyday service needs, all through one place.</p>
-      <span class="launch">Visit live website →</span>
+      <p>My first business project, built for an on-call service platform in Samastipur, Bihar. SDS brings a wide range of everyday services under one roof — from hardware and software support to plumbing, construction, repairs and more — making it easier for customers to get the right service when they need it.</p>
+      <span class="launch">Launch site →</span>
     </article>
 
     <article class="card project-card" onclick="openProjectModal('📋 HW Records','https://priyanshusiing01-alt.github.io/hwrecords/')">
@@ -363,7 +287,7 @@ footer strong{color:#e9edf3}
     <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">2025</div><div class="timeline-title">Built SVM Website (Class 10 Milestone)</div></div>
     <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">2026</div><div class="timeline-title">Created "My Mistakes" App, "My Tracker", JEE FlashRecall & JEE Portal</div></div>
     <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">2026</div><div class="timeline-title">Launched "HW Records" - Smart Homework Tracker</div></div>
-    <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">2026 · BUSINESS MILESTONE</div><div class="timeline-title">Built SDS (Sangam Dial Service) — my first business project for an on-call service in Samastipur, Bihar</div></div>
+    <div class="timeline-item sds-timeline"><div class="timeline-dot"></div><div class="timeline-date">2026</div><div class="timeline-title">Launched SDS (Sangam Dial Service) — my 1st Business Project, an on-call service platform for Samastipur, Bihar.</div></div>
     <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">2026</div><div class="timeline-title">Active development on upcoming websites...</div></div>
     <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Future</div><div class="timeline-title">Secret Milestones In Progress 🤫</div></div>
   </div>
